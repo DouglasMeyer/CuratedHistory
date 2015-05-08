@@ -1,0 +1,24 @@
+{
+  "name": "CuratedHistoryChromeExtension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "This extension was created with the awesome extensionizr.com",
+  "homepage_url": "http://www.douglas-meyer.name/CuratedHistory/",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "history",
+    "http://www.douglas-meyer.name/CuratedHistory/*",
+    "http://localhost:4000/*"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "http://www.douglas-meyer.name/CuratedHistory/*",
+      "http://localhost:4000/*"
+    ]
+  }
+}

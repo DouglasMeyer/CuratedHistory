@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<script src="//cdn.rawgit.com/oauth-io/oauth-js/0.4.1/dist/oauth.min.js"></script>
+<h1>Login</h1>
+<script>
+  OAuth.initialize('rCd57KbOg4fKbK1zWplWbDqtgEo');
+  OAuth.popup('github')
+  .done(function(result){
+    localStorage.setItem('github_token', result.access_token);
+    window.location = "{{ site.baseurl }}/admin";
+  })
+  .fail(console.error.bind(console));
+</script>

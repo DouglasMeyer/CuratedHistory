@@ -1,0 +1,9 @@
+title: Doug's Curated Browsing History
+email: Douglas.Meyer@mail.com
+
+owner: "DouglasMeyer"
+repo: "CuratedHistory"
+url: "http://www.douglas-meyer.name"
+baseurl: "/CuratedHistory"
+
+markdown: kramdown

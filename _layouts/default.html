@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ "/feed.xml" | prepend: site.baseurl }}" />
+
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/default.css" />
+  </head>
+  <body>
+    <h1 class="title">
+      <a href="{{ site.baseurl }}/">{{ site.title }}</a>
+      {% if page.date %}- {{ page.date | date: '%B %d, %Y' }}{% endif %}
+      <a class="title__rss" title="RSS Feed" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+        <svg viewBox="0 0 3 3" version="1.1">
+          <circle cx="0.5" cy="2.5" r="0.35" fill="currentColor" />
+          <path d="M 2.5 2.5 C 2.5 1.5, 1.5 0.5, 0.5 0.5" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" fill="transparent" />
+          <path d="M 1.5 2.5 C 1.5 1.5, 0.5 1.5, 0.5 1.5" stroke="currentColor" stroke-width="0.5" stroke-linecap="round" fill="transparent" />
+        </svg>
+      </a>
+    </h1>
+    {{ content }}
+    <div id="disqus_thread"></div>
+    <script>
+      var disqus_shortname = 'dougshistory';
+      var disqus_identifier = '{{ page.date | date: "%Y-%m-%d" }}' || 'index';
+      var disqus_title = "Doug's browsing history{% if page.date %} for {{ page.date | date: "%Y-%m-%d" }}{% endif %}";
+    </script>
+    <script src="//dougshistory.disqus.com/embed.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-63141604-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

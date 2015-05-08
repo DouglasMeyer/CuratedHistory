@@ -1,0 +1,74 @@
+---
+---
+<script src="//cdn.rawgit.com/philschatz/octokat.js/v0.4.9/dist/octokat.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+<script src="index.js"></script>
+
+<style>
+  [m-no-list] { list-style-type: none; }
+
+  .editor textarea {
+    width: 100%;
+  }
+
+  .app {
+    display: flex;
+  }
+  .navigation {
+    width: 10rem;
+  }
+  .navigation a {
+    display: block;
+  }
+  .content {
+    flex-grow: 1;
+  }
+</style>
+
+{% raw %}
+<div class="app" ng-app="AdminApp">
+  <div class="navigation" ng-controller="NavigationCtrl as navigation">
+    <h3>Pages</h3>
+    <a
+      ng-repeat="page in navigation.pages"
+      href="#{{ page.path }}"
+    >{{ page.path }}</a>
+    <a href="#new_page">new page</a>
+    <h3>Posts</h3>
+    <a
+      ng-repeat="post in navigation.posts"
+      href="#{{ post.path }}"
+    >{{ post.name }}</a>
+    <a href="#new_post">new post</a>
+    <h3>Settings</h3>
+    <a href="#config">config</a>
+  </div>
+
+  <div class="content" ng-view></div>
+
+  <script type="text/ng-template" id="edit_page.template">
+    <div class="editor">
+      <h2 ng-if="!edit.isNew">{{ edit.path }}</h2>
+      <input ng-if="edit.isNew" ng-model="edit.path" />
+      <textarea ng-model="edit.content" rows="30"></textarea>
+      <button ng-click="edit.save()">Save</button>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="new_post.template">
+    <div class="editor">
+      <input ng-model="edit.date"  placeholder="YYYY-MM-DD" />
+      <textarea ng-model="edit.content" rows="30"></textarea>
+      <button ng-click="edit.save()">Save</button>
+    </div>
+  </script>
+</div>
+
+{% endraw %}
+<script>
+  angular.module('AdminApp').value('siteConfig', {
+    owner: '{{ site.owner }}',
+    repo: '{{ site.repo }}'
+  });
+</script>
