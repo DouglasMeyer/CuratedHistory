@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ site.title }}{% if page.date %}{{ page.date | date: '%B %d, %Y' }} - {% endif %}</title>
+    <title>{{ site.title }}{% if page.date %}- {{ page.date | date: '%B %d, %Y' }}{% endif %}</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
