@@ -131,7 +131,7 @@ function NavigationCtrl($scope, getFiles){
   }.bind(this));
 }
 
-function EditPageCtrl(pageInfo, persistFile){
+function EditPageCtrl(pageInfo, persistFile, $location){
   if (pageInfo){
     this.path    = pageInfo.path;
     this.sha     = pageInfo.sha;
@@ -140,13 +140,16 @@ function EditPageCtrl(pageInfo, persistFile){
   this.isNew   = !this.sha;
 
   this.persistFile = persistFile;
+  this.$location = $location;
 }
 EditPageCtrl.prototype.save = function(){
   this.persistFile({
     path: this.path,
     content: btoa(this.content),
     sha: this.sha
-  }).then(console.log.bind(console), console.error.bind(console));
+  }).then(function(){
+    this.$location.path(this.path);
+  }.bind(this), console.error.bind(console));
 };
 
 function NewPostCtrl(browserHistoryAndInfo, persistFile){
