@@ -143,6 +143,7 @@ function EditPageCtrl(pageInfo, persistFile, $location){
   this.$location = $location;
 }
 EditPageCtrl.prototype.save = function(){
+  this.saving = true;
   this.persistFile({
     path: this.path,
     content: btoa(this.content),
@@ -152,11 +153,12 @@ EditPageCtrl.prototype.save = function(){
   }.bind(this), console.error.bind(console));
 };
 
-function NewPostCtrl(browserHistoryAndInfo, persistFile){
+function NewPostCtrl(browserHistoryAndInfo, persistFile, $q){
   this.browserHistory = browserHistoryAndInfo[0];
   this.browserInfo = browserHistoryAndInfo[1];
   this.persistFile = persistFile;
   this.browserInfoContent = JSON.parse(atob(this.browserInfo.content));
+  this.$q = $q;
 
   var historyHash = {};
   this.browserHistory.forEach(function(historyItem){
@@ -185,6 +187,7 @@ function NewPostCtrl(browserHistoryAndInfo, persistFile){
 NewPostCtrl.prototype.save = function(){
   var now = Date.now();
   var postRegExp = "\\[(.+)\\]\\((.+)\\)";
+  this.saving = true;
   this.browserInfoContent.latestHistoryPublishedAt = now;
   var linkMatches = (this.content.match(new RegExp(postRegExp, 'g')) || []);
   this.content = this.content
@@ -195,13 +198,17 @@ NewPostCtrl.prototype.save = function(){
     var data = str.match(new RegExp(postRegExp));
     this.browserInfoContent.publishedUrls[data[2]] = now;
   }, this);
-  this.persistFile({
-    path: '_data/history_items.json',
-    content: btoa(JSON.stringify(this.browserInfoContent)),
-    sha: this.browserInfo.sha
-  }).then(console.log.bind(console), console.error.bind(console));
-  this.persistFile({
-    path: '_posts/' + this.date + '-index.md',
-    content: btoa(this.content)
-  }).then(console.log.bind(console), console.error.bind(console));
+  this.$q.all([
+    this.persistFile({
+      path: '_data/history_items.json',
+      content: btoa(JSON.stringify(this.browserInfoContent)),
+      sha: this.browserInfo.sha
+    }),
+    this.persistFile({
+      path: '_posts/' + this.date + '-index.md',
+      content: btoa(this.content)
+    })
+  ]).then(function(){
+    this.$location.path('_posts/' + this.date + '-index.md');
+  }.bind(this), console.error.bind(console));
 };
