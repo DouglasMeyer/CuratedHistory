@@ -1,0 +1,18 @@
+[m-no-list] { list-style-type: none; }
+
+.editor textarea {
+  width: 100%;
+}
+
+.app {
+  display: flex;
+}
+.navigation {
+  width: 10rem;
+}
+.navigation a {
+  display: block;
+}
+.content {
+  flex-grow: 1;
+}
