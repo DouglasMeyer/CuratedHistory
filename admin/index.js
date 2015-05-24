@@ -149,6 +149,7 @@ EditPageCtrl.prototype.save = function(){
     content: btoa(this.content),
     sha: this.sha
   }).then(function(){
+    delete this.saving;
     this.$location.path(this.path);
   }.bind(this), console.error.bind(console));
 };
