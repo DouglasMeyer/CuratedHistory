@@ -1,14 +1,23 @@
 [m-no-list] { list-style-type: none; }
 
+.editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 .editor textarea {
-  width: 100%;
+  flex-grow: 1;
 }
 
 .app {
   display: flex;
+  height: 100%;
+  overflow: hidden;
 }
 .navigation {
   width: 10rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .navigation a {
   display: block;
