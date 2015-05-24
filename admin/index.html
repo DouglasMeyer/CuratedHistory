@@ -33,7 +33,7 @@
       <input ng-if="edit.isNew" ng-model="edit.path" />
       <textarea ng-model="edit.content" rows="30"></textarea>
       <div>
-        <button ng-click="edit.save()">Save</button>
+        <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
       </div>
     </div>
   </script>
@@ -43,7 +43,7 @@
       <input ng-model="edit.date"  placeholder="YYYY-MM-DD" />
       <textarea ng-model="edit.content" rows="30"></textarea>
       <div>
-        <button ng-click="edit.save()">Save</button>
+        <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
       </div>
     </div>
   </script>
