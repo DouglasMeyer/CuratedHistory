@@ -9,18 +9,18 @@
 {% raw %}
 <div class="app" ng-app="AdminApp">
   <div class="navigation" ng-controller="NavigationCtrl as navigation">
-    <h3>Pages</h3>
-    <a
-      ng-repeat="page in navigation.pages"
-      href="#{{ page.path }}"
-    >{{ page.path }}</a>
-    <a href="#new_page">new page</a>
     <h3>Posts</h3>
     <a
       ng-repeat="post in navigation.posts"
       href="#{{ post.path }}"
     >{{ post.name }}</a>
     <a href="#new_post">new post</a>
+    <h3>Pages</h3>
+    <a
+      ng-repeat="page in navigation.pages"
+      href="#{{ page.path }}"
+    >{{ page.path }}</a>
+    <a href="#new_page">new page</a>
     <h3>Settings</h3>
     <a href="#config">config</a>
   </div>
