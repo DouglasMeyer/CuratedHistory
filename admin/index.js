@@ -187,7 +187,7 @@ function NewPostCtrl(browserHistoryAndInfo, persistFile, $q){
 
   for (var hostname in historyHash){
     historyHash[hostname].forEach(function(historyItem){
-      this.content += ' * [' + historyItem.title + '](' + historyItem.url + ')\n';
+      this.content += ' * [' + unescape(encodeURIComponent(historyItem.title)).replace(/\|/g, '\\|') + '](' + historyItem.url + ')\n';
       if (publishedUrls.hasOwnProperty( historyItem.url )){
         this.content += '   Published on '+new Date(publishedUrls[ historyItem.url ])+'\n';
       }
@@ -201,10 +201,7 @@ NewPostCtrl.prototype.save = function(){
   this.saving = true;
   this.browserInfoContent.latestHistoryPublishedAt = now;
   var linkMatches = (this.content.match(new RegExp(postRegExp, 'g')) || []);
-  this.content = this.content
-    .replace(/^links: \d*$/m, 'links: '+linkMatches.length)
-    .replace(/\|/g, '\\|')
-    .replace(/\’/g, '\'');
+  this.content = this.content.replace(/^links: \d*$/m, 'links: '+linkMatches.length);
   linkMatches.forEach(function(str){
     var data = str.match(new RegExp(postRegExp));
     this.browserInfoContent.publishedUrls[data[2]] = now;
