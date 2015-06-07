@@ -114,7 +114,7 @@ angular.module('AdminApp', ['ng', 'ngRoute', 'ui.ace'])
 })
 .controller('NavigationCtrl', NavigationCtrl)
 .controller('EditPageCtrl', EditPageCtrl)
-.controller('NewPostCtrl', NewPostCtrl)
+.controller('NewPostCtrl', NewPostCtrl);
 
 function NavigationCtrl($scope, getFiles){
   this.pages = [];
