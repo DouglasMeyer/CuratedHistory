@@ -36,7 +36,6 @@
     <div class="editor">
       <h2 ng-if="!edit.isNew">{{ edit.path }}</h2>
       <input ng-if="edit.isNew" ng-model="edit.path" />
-      <textarea ng-model="edit.content" rows="30"></textarea>
       <div ui-ace="{{ edit.aceOptions }}" ng-model="edit.content"></div>
       <div>
         <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
@@ -47,8 +46,7 @@
   <script type="text/ng-template" id="new_post.template">
     <div class="editor">
       <input ng-model="edit.date"  placeholder="YYYY-MM-DD" />
-      <textarea ng-model="edit.content" rows="30"></textarea>
-      <div ui-ace="{{ edit.aceOptions }}"  ng-model="edit.content"></div>
+      <div ui-ace="{ mode: 'markdown' }"  ng-model="edit.content"></div>
       <div>
         <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
       </div>
