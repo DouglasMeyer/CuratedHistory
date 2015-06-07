@@ -1,5 +1,5 @@
 "use strict";
-angular.module('AdminApp', ['ng', 'ngRoute'])
+angular.module('AdminApp', ['ng', 'ngRoute', 'ui.ace'])
 .config(function($routeProvider){
   $routeProvider.when('/config', {
     controller: 'EditPageCtrl', controllerAs: 'edit',
