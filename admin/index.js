@@ -166,7 +166,7 @@ EditPageCtrl.prototype.save = function(){
 
 function NewPostCtrl(browserHistoryAndInfo, persistFile, $q){
   this.browserHistory = browserHistoryAndInfo[0] || [{
-    url: '',
+    url: document.location.href,
     title: 'Unable to fetch history!!'
   }];
   this.browserInfo = browserHistoryAndInfo[1];
