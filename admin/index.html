@@ -1,6 +1,7 @@
 ---
 ---
 <script src="//cdn.rawgit.com/philschatz/octokat.js/v0.4.9/dist/octokat.js"></script>
+<script src="//cdn.rawgit.com/angular-ui/ui-ace/v0.2.3/ui-ace.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
@@ -34,7 +35,7 @@
       <h2 ng-if="!edit.isNew">{{ edit.path }}</h2>
       <input ng-if="edit.isNew" ng-model="edit.path" />
       <textarea ng-model="edit.content" rows="30"></textarea>
-      <div id="editor"></div>
+      <div ui-ace ng-model="edit.content"></div>
       <div>
         <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
       </div>
@@ -45,7 +46,7 @@
     <div class="editor">
       <input ng-model="edit.date"  placeholder="YYYY-MM-DD" />
       <textarea ng-model="edit.content" rows="30"></textarea>
-      <div id="editor"></div>
+      <div ui-ace ng-model="edit.content"></div>
       <div>
         <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
       </div>
