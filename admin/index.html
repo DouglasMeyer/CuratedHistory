@@ -3,6 +3,8 @@
 <script src="//cdn.rawgit.com/philschatz/octokat.js/v0.4.9/dist/octokat.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/ace.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.9/mode-markdown.js"></script>
 <script src="index.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/admin/index.css" />
 
@@ -32,6 +34,7 @@
       <h2 ng-if="!edit.isNew">{{ edit.path }}</h2>
       <input ng-if="edit.isNew" ng-model="edit.path" />
       <textarea ng-model="edit.content" rows="30"></textarea>
+      <div id="editor"></div>
       <div>
         <button ng-click="edit.save()" ng-disabled="edit.saving">Save</button>
       </div>
