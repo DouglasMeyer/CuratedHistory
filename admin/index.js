@@ -170,10 +170,6 @@ function NewPostCtrl(browserHistoryAndInfo, persistFile, $q){
   this.persistFile = persistFile;
   this.browserInfoContent = JSON.parse(atob(this.browserInfo.content));
   this.$q = $q;
-  this.aceOptions = {
-    mode: 'markdown'
-  };
-
 
   var historyHash = {};
   this.browserHistory.forEach(function(historyItem){
