@@ -8,7 +8,7 @@
 .editor > textarea {
   flex-grow: 1;
 }
-.editor #editor {
+.editor > [ui-ace] {
   flex-grow: 1;
 }
 
