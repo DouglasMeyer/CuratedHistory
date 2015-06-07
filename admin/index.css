@@ -5,7 +5,10 @@
   flex-direction: column;
   height: 100%;
 }
-.editor textarea {
+.editor > textarea {
+  flex-grow: 1;
+}
+.editor #editor {
   flex-grow: 1;
 }
 
