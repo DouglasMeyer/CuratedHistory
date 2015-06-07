@@ -138,6 +138,16 @@ function EditPageCtrl(pageInfo, persistFile, $location){
     this.content = atob(pageInfo.content);
   }
   this.isNew   = !this.sha;
+  try {
+    var extension = this.path.match(/\.(.*)$/)[1];
+    var mode = {
+      'js': 'javascript',
+      'md': 'markdown'
+    }[extension] || extension;
+    this.aceOptions = { mode: mode };
+  } catch (e){
+    console.log(e);
+  }
 
   this.persistFile = persistFile;
   this.$location = $location;
@@ -160,6 +170,10 @@ function NewPostCtrl(browserHistoryAndInfo, persistFile, $q){
   this.persistFile = persistFile;
   this.browserInfoContent = JSON.parse(atob(this.browserInfo.content));
   this.$q = $q;
+  this.aceOptions = {
+    mode: 'markdown'
+  };
+
 
   var historyHash = {};
   this.browserHistory.forEach(function(historyItem){
